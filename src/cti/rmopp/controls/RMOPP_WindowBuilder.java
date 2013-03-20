@@ -11,10 +11,14 @@ public class RMOPP_WindowBuilder {
 			retCtrl = new RMOPP_StatusBar();
 		} else if ("ToolBar".equals(control)) {
 			retCtrl = new RMOPP_ToolBar();
-		} else if ("Desktop".equals(control)) {
+		} else if ("MenuBar".equals(control)) {
+			retCtrl = new RMOPP_MenuBar();
+		}else if ("Desktop".equals(control)) {
 			retCtrl = new RMOPP_DesktopPane();
 		} else if ("Split".equals(control)) {
 			retCtrl = new RMOPP_SplitPane();
+		}else if ("MenuControl".equals(control)) {
+			retCtrl = new RMOPP_MenuControl();
 		}
 		return retCtrl;
 	}

@@ -20,20 +20,20 @@ public class RMOPP_DesktopPane extends JDesktopPane implements
 	@Override
 	public void loadControls() {
 
-		RMOPP_InternalFrame internalFrame = new RMOPP_InternalFrame(
-				"Dash Board", (int) (RMOPP_Utilitties.getScreenWidth() * .89),
-				(int) (RMOPP_Utilitties.getScreenHeight() * .90), true, false,
-				false);
+/*		RMOPP_InternalFrame internalFrame = new RMOPP_InternalFrame(
+				"Dash Board", (int) (RMOPP_Utilitties.getScreenWidth() * .88),
+				(int) (RMOPP_Utilitties.getScreenHeight() * .86), true, false,
+				false);*/
 
 		RMOPP_SwitchFrame switchFrame = new RMOPP_SwitchFrame("Switch 1",
-				(int) (RMOPP_Utilitties.getScreenWidth() * .89),
-				(int) (RMOPP_Utilitties.getScreenHeight() * .90), true, false,
+				(int) (RMOPP_Utilitties.getScreenWidth() * .88),
+				(int) (RMOPP_Utilitties.getScreenHeight() * .86), true, false,
 				true);
 
-		add(internalFrame);
+//		add(internalFrame);
 		add(switchFrame);
 
-		internalFrame.setVisible(true);
+//		internalFrame.setVisible(true);
 	}
 
 }

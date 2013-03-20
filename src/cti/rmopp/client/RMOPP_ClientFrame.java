@@ -10,9 +10,9 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import cti.rmopp.controls.RMOPP_BaseControl;
+import cti.rmopp.controls.RMOPP_MenuControl;
 import cti.rmopp.controls.RMOPP_SplitPane;
 import cti.rmopp.controls.RMOPP_StatusBar;
-import cti.rmopp.controls.RMOPP_ToolBar;
 import cti.rmopp.controls.RMOPP_WindowBuilder;
 import cti.rmopp.model.RMOPP_User;
 import cti.rmopp.utils.RMOPP_Utilitties;
@@ -32,15 +32,15 @@ public class RMOPP_ClientFrame extends JFrame implements RMOPP_BaseControl {
 	private Container container;
 
 	private RMOPP_User currentUser;
-	
+
 	final Dimension dim = RMOPP_Utilitties.getScreenResolution();
 
 	public RMOPP_ClientFrame(RMOPP_User curUser) {
-	
+
 		currentUser = curUser;
-		
+
 		RMOPP_Utilitties.setCurrentUser(curUser);
-		
+
 		initialize();
 	}
 
@@ -64,7 +64,7 @@ public class RMOPP_ClientFrame extends JFrame implements RMOPP_BaseControl {
 		setScreenSize();
 
 		setTitle(currentUser.getUsername());
-		
+
 		container = getContentPane();
 
 		setSize((int) cfgWidth, (int) cfgHeight);
@@ -74,13 +74,13 @@ public class RMOPP_ClientFrame extends JFrame implements RMOPP_BaseControl {
 		setAlwaysOnTop(true);
 
 		loadControls();
-		
+
 		setVisible(true);
 	}
 
 	@Override
 	public void loadControls() {
-		
+
 		container.setLayout(new BorderLayout());
 
 		container.add(
@@ -88,8 +88,8 @@ public class RMOPP_ClientFrame extends JFrame implements RMOPP_BaseControl {
 				BorderLayout.SOUTH);
 
 		container.add(
-				(RMOPP_ToolBar) RMOPP_WindowBuilder.getControls("ToolBar"),
-				BorderLayout.NORTH);
+				(RMOPP_MenuControl) RMOPP_WindowBuilder.getControls("MenuControl"),
+				BorderLayout.NORTH);		
 
 		container.add(
 				(RMOPP_SplitPane) RMOPP_WindowBuilder.getControls("Split"),
