@@ -112,31 +112,9 @@ public class RMOPP_SwitchFrame extends RMOPP_InternalFrame {
 		JMenuItem mntmClose = new JMenuItem("Close");
 		mnFile.add(mntmClose);
 
-		JDesktopPane desktopPane = new JDesktopPane();
-		getContentPane().add(desktopPane, BorderLayout.CENTER);
+		RMOPP_SwitchPanel switchPanel = new RMOPP_SwitchPanel(width, height);
 
-		JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
-		internalFrame.setResizable(true);
-		internalFrame.setClosable(true);
-		internalFrame.setBounds(23, 44, 190, 295);
-		desktopPane.add(internalFrame);
-
-		JInternalFrame internalFrame_1 = new JInternalFrame(
-				"New JInternalFrame");
-		internalFrame_1.setResizable(true);
-		internalFrame_1.setClosable(true);
-		internalFrame_1.setBounds(595, 44, 190, 348);
-		desktopPane.add(internalFrame_1);
-
-		JInternalFrame internalFrame_2 = new JInternalFrame(
-				"New JInternalFrame");
-		internalFrame_2.setResizable(true);
-		internalFrame_2.setClosable(true);
-		internalFrame_2.setBounds(25, (int)(height * .25), (int)(width * .95), (int)(height * .50));
-		desktopPane.add(internalFrame_2);
-		internalFrame_2.setVisible(true);
-		internalFrame_1.setVisible(true);
-		internalFrame.setVisible(true);
+		getContentPane().add(switchPanel, BorderLayout.CENTER);
 
 	}
 
