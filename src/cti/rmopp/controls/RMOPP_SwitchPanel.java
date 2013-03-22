@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import cti.rmopp.model.RMOPP_Coordinates;
+import cti.rmopp.utils.RMOPP_CoordinatesCalculator;
+
 public class RMOPP_SwitchPanel extends JPanel implements RMOPP_BaseControl {
 
 	/**
@@ -24,6 +27,7 @@ public class RMOPP_SwitchPanel extends JPanel implements RMOPP_BaseControl {
 	private int rectH;
 	private int rectX;
 	private int rectY;
+	private RMOPP_Coordinates cord;
 
 	public RMOPP_SwitchPanel(int w, int h) {
 		this.width = w;
@@ -31,34 +35,67 @@ public class RMOPP_SwitchPanel extends JPanel implements RMOPP_BaseControl {
 		setOpaque(true);
 		setBackground(Color.gray);
 		setLayout(null);
+		setAlignmentY(TOP_ALIGNMENT);
+		cord = RMOPP_CoordinatesCalculator.getSwitchPanelCoordinates(width,
+				height, 192);
 
-		rectW = (int) (width * .65);
-		rectH = (int) (height * .25);
-
-		rectX = (int) ((width / 2) - (rectW / 2));
-		rectY = (int) ((height / 2) - (rectH / 2)) - 20;
+		rectW = cord.BASEPANELWIDTH; // (int) (width * .65);
+		rectH = cord.BASEPANELHEIGHT;// (int) (height * .25);
+		rectX = cord.BASEPANELX;// (int) ((width / 2) - (rectW / 2));
+		rectY = cord.BASEPANELY;// (int) ((height / 2) - (rectH / 2)) - 20;
 
 		loadControls();
 	}
 
 	@Override
 	public void loadControls() {
-		int tempX = rectX + 25;
-		for (int i = 0; i < 16; i++) {
-			System.out.println(tempX);
-			RMOPP_PortLabel lbl = new RMOPP_PortLabel("" + (i + 1));
-			lbl.setBounds(tempX, rectY - 12, 25, 25);
-			tempX += 50;
-			add(lbl);
+
+		loadInputPorts();
+		loadOutputPorts();
+
+	}
+
+	private void loadInputPorts() {
+		int tempX, tempY;
+		tempX = rectX + (cord.PORTOFFSET / 3);
+		tempY = rectY;
+		int index = 1;
+		for (int k = 0; k < 12; k++) {
+			tempX = rectX + (cord.PORTOFFSET / 3);
+
+			tempY = (rectY - (((k + 1) * cord.PORTLABELHEIGHT)))
+					- ((k + 1) * 6);
+
+			for (int i = 0; i < 16; i++) {
+				RMOPP_PortLabel lbl = new RMOPP_PortLabel("" + index, tempX,
+						tempY + 13, cord.PORTLABELWIDTH, cord.PORTLABELHEIGHT,
+						RMOPP_PortLabel.PortType.INPUT);
+				tempX += cord.PORTOFFSET;
+				add(lbl);
+				index++;
+			}
 		}
-		tempX = rectX+25 ;
-		int tempY = rectY + rectH;
-		for (int i = 16; i < 32; i++) {
-			System.out.println(tempX);
-			RMOPP_PortLabel lbl = new RMOPP_PortLabel("" + (i + 1));
-			lbl.setBounds(tempX, tempY-12, 25, 25);
-			tempX += 50;
-			add(lbl);
+
+	}
+
+	private void loadOutputPorts() {
+		int tempX, tempY, recY;
+		tempX = rectX + (cord.PORTOFFSET / 3);
+		recY = cord.BASEPANELY + cord.BASEPANELHEIGHT;
+		tempY = recY;
+		int index = 193;
+		for (int k = 0; k < 12; k++) {
+			tempX = rectX + (cord.PORTOFFSET / 3);
+			tempY = (recY + (((k + 1) * cord.PORTLABELHEIGHT))) + ((k + 1) * 6);
+
+			for (int i = 16; i < 32; i++) {
+				RMOPP_PortLabel lbl = new RMOPP_PortLabel("" + index, tempX,
+						tempY-(cord.PORTLABELHEIGHT *2), cord.PORTLABELWIDTH, cord.PORTLABELHEIGHT,
+						RMOPP_PortLabel.PortType.OUTPUT);
+				tempX += cord.PORTOFFSET;
+				add(lbl);
+				index++;
+			}
 		}
 	}
 
