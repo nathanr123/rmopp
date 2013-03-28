@@ -71,7 +71,7 @@ public class RMOPP_ClientFrame extends JFrame implements RMOPP_BaseControl {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setAlwaysOnTop(true);
+//		setAlwaysOnTop(true);
 
 		loadControls();
 
